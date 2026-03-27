@@ -1,17 +1,31 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject enemyPrefab;
+    public Coroutine goodByeRoutine;
 
+    public Rigidbody box;
     void Start()
     {
         //InvokeRepeating(nameof(RandomSpawn),0, 5);
 
         //StartCoroutine(Hello());
-        StartCoroutine(Goodbye());
+        //goodByeRoutine = StartCoroutine(Goodbye());
+        //StartCoroutine(MoveBox());
+    }
+
+    IEnumerator SpawnRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        while (true)
+        {
+            RandomSpawn();
+            yield return new WaitForSeconds(3);
+        }
     }
     void RandomSpawn()
     {
@@ -19,14 +33,32 @@ public class SpawnManager : MonoBehaviour
         var spawnPoint = spawnPoints[index];
         Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
     }
+    IEnumerator MoveBox()
+    {
+        while (true)
+        {
+            box.linearVelocity = 10 * Vector3.up;
+            yield return new WaitForSeconds(3);
+            box.linearVelocity = 10 * Vector3.right;
+            yield return new WaitForSeconds(3);
+            box.linearVelocity = 10 * Vector3.down;
+            yield return new WaitForSeconds(3);
+            box.linearVelocity = 10 * Vector3.left;
+        }
+    }
     IEnumerator Goodbye()
     {
         while (true)
         {
             Debug.Log("Bye " + Time.frameCount + " " + Time.time);
             //yield return new WaitForSeconds(1);
-            //Debug.Log("Bye " + Time.frameCount + " " + Time.time);
             yield return null;
+
+            /*if(Time.time > 5)
+            {
+                yield break;
+            }*/
+            yield return Hello();
         }
     }
     IEnumerator Hello()
@@ -39,5 +71,10 @@ public class SpawnManager : MonoBehaviour
         yield return null ;
         Debug.Log("Hello " + Time.frameCount);
         yield return null ;
+        yield return null;
+        yield return null;
+        yield return null;
+        yield return null;
+        Debug.Log("Hello " + Time.frameCount);
     }
 }
