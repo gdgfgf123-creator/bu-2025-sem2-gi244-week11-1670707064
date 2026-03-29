@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,6 +21,6 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = player.transform.forward - transform.position;
         dir.Normalize();
-        rb.AddForce (dir * speed);
+        rb.AddForce(dir * speed);
     }
 }

@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     public Rigidbody box;
     void Start()
     {
-        //InvokeRepeating(nameof(RandomSpawn),0, 5);
+        InvokeRepeating(nameof(RandomSpawn),0, 5);
 
         //StartCoroutine(Hello());
         //goodByeRoutine = StartCoroutine(Goodbye());
@@ -68,9 +68,9 @@ public class SpawnManager : MonoBehaviour
         Debug.Log("Hello " + Time.frameCount);
         yield return null;
         Debug.Log("Hello " + Time.frameCount);
-        yield return null ;
+        yield return null;
         Debug.Log("Hello " + Time.frameCount);
-        yield return null ;
+        yield return null;
         yield return null;
         yield return null;
         yield return null;
