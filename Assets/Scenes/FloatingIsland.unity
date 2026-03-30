@@ -465,14 +465,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175960558}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.024432095, z: 0, w: 0.9997015}
-  m_LocalPosition: {x: -0.93909, y: -0.65736, z: -0.93909}
+  m_LocalRotation: {x: 0, y: 0.25038, z: -0, w: -0.9681477}
+  m_LocalPosition: {x: -0.93909, y: 1.41, z: -0.93909}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1211419928}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -2.8, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -389, z: 0}
 --- !u!1 &1176266728
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  focalPoint: {fileID: 1175960559}
+  focalPoint: {fileID: 0}
   hasPowerUp: 0
 --- !u!54 &1231960639
 Rigidbody:
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   - {fileID: 1176266729}
   - {fileID: 1651429377}
   enemyPrefab: {fileID: 8279026461862980053, guid: bb420f9ac2083cd4ea138531408225e7, type: 3}
-  box: {fileID: 1343184653}
+  waveNumber: 1
 --- !u!4 &2000910670
 Transform:
   m_ObjectHideFlags: 0

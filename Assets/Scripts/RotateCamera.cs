@@ -15,8 +15,7 @@ public class RotateCamera : MonoBehaviour
 
     void Update()
     {
-        var move = moveAction.ReadValue<Vector2>();
-        var h = move.x;
-        transform.Rotate(Vector3.up, rotationSpeed * h * Time.deltaTime);
+        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+        transform.Rotate(Vector3.up, moveInput.x * rotationSpeed * Time.deltaTime);
     }
 }

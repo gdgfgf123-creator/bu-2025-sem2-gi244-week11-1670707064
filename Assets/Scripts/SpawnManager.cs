@@ -1,80 +1,43 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject enemyPrefab;
-    public Coroutine goodByeRoutine;
 
-    public Rigidbody box;
+    public int waveNumber = 1;
+
     void Start()
     {
-        InvokeRepeating(nameof(RandomSpawn),0, 5);
-
-        //StartCoroutine(Hello());
-        //goodByeRoutine = StartCoroutine(Goodbye());
-        //StartCoroutine(MoveBox());
+        SpawnWave();
     }
 
-    IEnumerator SpawnRoutine()
+    void Update()
     {
-        yield return new WaitForSeconds(5);
-        while (true)
+        // ถ้าไม่มี enemy เหลือ ? wave ต่อไป
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            waveNumber++;
+            SpawnWave();
+        }
+    }
+
+    void SpawnWave()
+    {
+        Debug.Log("Wave: " + waveNumber);
+
+        for (int i = 0; i < waveNumber; i++)
         {
             RandomSpawn();
-            yield return new WaitForSeconds(3);
         }
     }
+
     void RandomSpawn()
     {
-        var index = Random.Range(0, spawnPoints.Length);
-        var spawnPoint = spawnPoints[index];
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-    }
-    IEnumerator MoveBox()
-    {
-        while (true)
-        {
-            box.linearVelocity = 10 * Vector3.up;
-            yield return new WaitForSeconds(3);
-            box.linearVelocity = 10 * Vector3.right;
-            yield return new WaitForSeconds(3);
-            box.linearVelocity = 10 * Vector3.down;
-            yield return new WaitForSeconds(3);
-            box.linearVelocity = 10 * Vector3.left;
-        }
-    }
-    IEnumerator Goodbye()
-    {
-        while (true)
-        {
-            Debug.Log("Bye " + Time.frameCount + " " + Time.time);
-            //yield return new WaitForSeconds(1);
-            yield return null;
+        int index = Random.Range(0, spawnPoints.Length);
+        Transform spawnPoint = spawnPoints[index];
 
-            /*if(Time.time > 5)
-            {
-                yield break;
-            }*/
-            yield return Hello();
-        }
-    }
-    IEnumerator Hello()
-    {
-        Debug.Log("Hello " + Time.frameCount);
-        Debug.Log("Hello " + Time.frameCount);
-        Debug.Log("Hello " + Time.frameCount);
-        yield return null;
-        Debug.Log("Hello " + Time.frameCount);
-        yield return null;
-        Debug.Log("Hello " + Time.frameCount);
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
-        Debug.Log("Hello " + Time.frameCount);
+        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
     }
 }
